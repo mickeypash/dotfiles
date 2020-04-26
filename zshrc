@@ -4,7 +4,7 @@
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-export ZSH="/Users/mickey/.oh-my-zsh"
+export ZSH=~/.oh-my-zsh
 
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
@@ -70,6 +70,7 @@ plugins=(
   # kubectl
   zsh-aws-vault
   fasd
+  asdf
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -110,7 +111,7 @@ eval "$(fasd --init auto)"
 
 source ~/.python.dot.sh
 source ~/.functions.dot.sh
-source ~/.ometria.dot.sh
+# source ~/.ometria.dot.sh
 source ~/.kube.dot.sh
 source ~/.aliases
 
@@ -186,6 +187,7 @@ export PATH=/usr/local/lib/ruby/gems/2.7.0:$PATH
 # export PROMPT="${ret_status} %{$fg[cyan]%}%c%{$reset_color%} $(prompt_aws_vault_segment) $(git_prompt_info)"
 
 export PROMPT='$(prompt_aws_vault_segment) ${ret_status} %{$fg[cyan]%}%c%{$reset_color%} $(git_prompt_info)'
+
 
 autoload -Uz compinit
 if [ $(date +'%j') != $(stat -f '%Sm' -t '%j' ~/.zcompdump) ]; then

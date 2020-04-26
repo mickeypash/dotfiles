@@ -28,6 +28,12 @@ alias zshconfig="subl ~/.zshrc"
 alias ohmyzsh="subl ~/.oh-my-zsh"
 alias aa="subl ~/.aliases"
 
+alias notes="subl ~/Code/notes/docs"
+
+# This is a hack, I would like to setup a proper system
+
+alias todo="subl ~/Code/notes/docs/weeks && subl ~/Code/notes/docs/weeks/$(date -u +"%Y-%m-%d").md"
+
 aws-env () {
   aws-vault exec $1 -- $SHELL -l
 }

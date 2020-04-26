@@ -13,6 +13,7 @@ workon() {
 }
 
 # Enable Pyenv
+export PATH="/Users/mickeypash/.pyenv/bin:$PATH"
 eval "$(pyenv init -)"
 eval "$(pyenv virtualenv-init -)"
 
