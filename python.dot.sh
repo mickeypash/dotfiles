@@ -4,7 +4,6 @@
 workon() {
   [ -z "$PROJECT_HOME" ] && {
     unset -f workon;
-    export WORKON_HOME=/server/python
     # export PROJECT_HOME=/server/python/;
     source /usr/local/bin/virtualenvwrapper.sh
 
