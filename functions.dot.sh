@@ -1,3 +1,31 @@
+function shorten() {
+    if [[ -z "$1" ]]; then
+        echo 'Give me a URL 🔗'
+        return 0
+    fi
+    pushd ~/Code/mickeys.link/ > /dev/null
+
+    if [[ $1 = "--list" ]]; then
+        cat _redirects
+    else
+        url=$1
+        uuid=`uuidgen | cut -c1-6 | tr '[:upper:]' '[:lower:]'`
+
+        revolver start "Your link is being snipped ✂️"
+        echo -e "/$uuid\t\t$url\n$(cat _redirects)" > _redirects
+        (git add _redirects && git commit -m "updated" && git push -q) > /dev/null
+        popd > /dev/null
+        revolver stop 
+
+        echo "✨Your link is ready and copied to your clipboard!✨"
+
+        short_url="https://mickeys.link/$uuid"
+        echo "$short_url"
+        echo "$short_url"| pbcopy
+    fi
+
+}
+
 function ,hist-search {
     history | grep -i "$1" | sed 's/^ *[0-9]* *//' | sort | uniq
 }
