@@ -1,0 +1,17 @@
+# This is Git's per-user configuration file.
+[user]
+# Please adapt and uncomment the following lines:
+#	name = Miroslav Pashov
+#	email = mickeypash@Miroslavs-MacBook-Pro.local
+[user]
+	name = mickeypash
+	email = pashov.m@gmail.com
+[core]
+	editor = vim
+[alias]
+	st = status
+	co = checkout
+	br = branch
+	up = rebase
+	ci = commit
+	ignore = "!gi() { IFS=\",\"; curl -L -s \"https://www.gitignore.io/api/$*\" | tee .gitignore;}; \\\ngi"
