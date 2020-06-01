@@ -13,6 +13,11 @@ alias dkflush2='docker rmi $(docker images --filter "dangling=true" -q --no-trun
 alias dkt='docker stats --format "table {{.Name}}\t{{.CPUPerc}}\t{{.MemUsage}}\t{{.NetIO}}"'
 alias dkps="docker ps --format 'table {{.ID}}\t{{.Names}}\t{{.Status}}\t{{.Image}}'"
 
+crm() {
+  docker-compose stop $1
+  docker-compose rm --force $1
+}
+
 
 dkln() {
   docker logs -f `docker ps -a | grep $1 | awk '{print $1}'`

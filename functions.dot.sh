@@ -1,3 +1,18 @@
+function __fzf_history__() (
+    local line
+    shopt -u nocaseglob nocasematch
+    line=$(
+        HISTTIMEFORMAT= history | sort -r -k 2 | uniq -f 1 | sort -n |
+            FZF_DEFAULT_OPTS="--height ${FZF_TMUX_HEIGHT:-40%} $FZF_DEFAULT_OPTS --tac --sync -n2..,.. --tiebreak=index --bind=ctrl-r:toggle-sort $FZF_CTRL_R_OPTS +m" $(__fzfcmd) |
+            command grep '^ *[0-9]'
+        ) &&
+        if [[ $- =~ H ]]; then
+            sed 's/^ *\([0-9]*\)\** .*/!\1/' <<< "$line"
+        else
+            sed 's/^ *\([0-9]*\)\** *//' <<< "$line"
+        fi
+)
+
 function shorten() {
     if [[ -z "$1" ]]; then
         echo 'Give me a URL 🔗'
@@ -42,8 +57,13 @@ function fzp {
     pycharm `fzf`
 }
 
+function aws-env () {
+  # switch AWS environment
+  aws-vault exec $1 -- $SHELL -l
+}
+
 # fshow - git commit browser
-fshow() {
+function fshow() {
   git log --graph --color=always \
       --format="%C(auto)%h%d %s %C(black)%C(bold)%cr" "$@" |
   fzf --ansi --no-sort --reverse --tiebreak=index --bind=ctrl-s:toggle-sort \

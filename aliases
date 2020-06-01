@@ -34,6 +34,4 @@ alias notes="subl ~/Code/notes/docs"
 
 alias todo="subl ~/Code/notes/docs/weeks && subl ~/Code/notes/docs/weeks/$(date -u +"%Y-%m-%d").md"
 
-aws-env () {
-  aws-vault exec $1 -- $SHELL -l
-}
+[ -f ~/.docker_aliases ] && source ~/.docker_aliases

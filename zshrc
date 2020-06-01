@@ -101,49 +101,21 @@ source $ZSH/oh-my-zsh.sh
 # For a full list of active aliases, run `alias`.
 #
 
-function crm () {
-	docker-compose stop $1
-	docker-compose rm --force $1
-}
-
 
 eval "$(fasd --init auto)"
 
-source ~/.python.dot.sh
-source ~/.functions.dot.sh
-# source ~/.ometria.dot.sh
-source ~/.kube.dot.sh
-source ~/.aliases
-
-
 ctags=“/usr/local/bin/ctags”
-
-[ -f ~/.docker_aliases ] && source ~/.docker_aliases
 
 
 setopt HIST_FIND_NO_DUPS
+setopt HIST_IGNORE_ALL_DUPS
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-function __fzf_history__() (
-    local line
-    shopt -u nocaseglob nocasematch
-    line=$(
-        HISTTIMEFORMAT= history | sort -r -k 2 | uniq -f 1 | sort -n |
-            FZF_DEFAULT_OPTS="--height ${FZF_TMUX_HEIGHT:-40%} $FZF_DEFAULT_OPTS --tac --sync -n2..,.. --tiebreak=index --bind=ctrl-r:toggle-sort $FZF_CTRL_R_OPTS +m" $(__fzfcmd) |
-            command grep '^ *[0-9]'
-        ) &&
-        if [[ $- =~ H ]]; then
-            sed 's/^ *\([0-9]*\)\** .*/!\1/' <<< "$line"
-        else
-            sed 's/^ *\([0-9]*\)\** *//' <<< "$line"
-        fi
-)
 
-# # The next line updates PATH for the Google Cloud SDK.
-# if [ -f '/Users/mickey/Downloads/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/mickey/Downloads/google-cloud-sdk/path.zsh.inc'; fi
-
-# # The next line enables shell command completion for gcloud.
-# if [ -f '/Users/mickey/Downloads/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/mickey/Downloads/google-cloud-sdk/completion.zsh.inc'; fi
+source ~/.python.dot.sh
+source ~/.functions.dot.sh
+source ~/.kube.dot.sh
+source ~/.aliases
 
 
 # Less config
