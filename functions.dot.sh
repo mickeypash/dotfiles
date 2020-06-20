@@ -1,4 +1,4 @@
-function __fzf_history__() (
+function __fzf_history__() {
     local line
     shopt -u nocaseglob nocasematch
     line=$(
@@ -11,7 +11,11 @@ function __fzf_history__() (
         else
             sed 's/^ *\([0-9]*\)\** *//' <<< "$line"
         fi
-)
+}
+
+catr() {
+    tail -n "+$1" $3 | head -n "$(($2 - $1 + 1))"
+}
 
 function shorten() {
     if [[ -z "$1" ]]; then
