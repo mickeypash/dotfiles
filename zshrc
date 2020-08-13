@@ -144,7 +144,6 @@ export PATH="/usr/local/opt/postgresql@10/bin:$PATH"
 export PATH="/Users/mickey/Library/Python/3.7/bin:$PATH"
 export PATH="/Users/mickey/Code:$PATH"
 
-
 # TODO Lazy load NVM
 # Node Version Manager
 # export NVM_DIR="$HOME/.nvm"
@@ -160,7 +159,6 @@ export PATH=/Library/Python/2.7/bin:$PATH
 # export PROMPT="${ret_status} %{$fg[cyan]%}%c%{$reset_color%} $(prompt_aws_vault_segment) $(git_prompt_info)"
 
 # export PROMPT='$(prompt_aws_vault_segment) ${ret_status} %{$fg[cyan]%}%c%{$reset_color%} $(git_prompt_info)'
-
 
 autoload -Uz compinit
 if [ $(date +'%j') != $(stat -f '%Sm' -t '%j' ~/.zcompdump) ]; then
