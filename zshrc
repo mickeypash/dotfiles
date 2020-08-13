@@ -154,11 +154,12 @@ export PATH="/Users/mickey/Code:$PATH"
 # Use Brew Ruby
 export PATH=/usr/local/opt/ruby/bin:$PATH
 export PATH=/usr/local/lib/ruby/gems/2.7.0:$PATH
+export PATH=/Library/Python/2.7/bin:$PATH
 
 # Split by language node.dot.sh; go.dot.sh; python.dot.sh
 # export PROMPT="${ret_status} %{$fg[cyan]%}%c%{$reset_color%} $(prompt_aws_vault_segment) $(git_prompt_info)"
 
-export PROMPT='$(prompt_aws_vault_segment) ${ret_status} %{$fg[cyan]%}%c%{$reset_color%} $(git_prompt_info)'
+# export PROMPT='$(prompt_aws_vault_segment) ${ret_status} %{$fg[cyan]%}%c%{$reset_color%} $(git_prompt_info)'
 
 
 autoload -Uz compinit
@@ -168,4 +169,5 @@ else
   compinit -C
 fi
 
+export PATH="/usr/local/opt/python/libexec/bin:$PATH"
 # zprof # bottom of .zshrc
