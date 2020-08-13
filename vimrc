@@ -15,7 +15,7 @@ set undodir=~/.vim/undodir
 set incsearch
 " set backspace=indent,eol,start
 set backspace=2           " Makes backspace behave like you'd expecti
-set showmatch             " Highlight matching braces
+" set showmatch             " Highlight matching braces
 set colorcolumn=80        " Highlight 80 character limit
 set showmode              " Show the current mode on the open buffer
 highlight ColorColumn ctermbg=0 guibg=lightgrey
@@ -27,6 +27,9 @@ call plug#begin('~/.vim/plugged')
 
 Plug 'morhetz/gruvbox',
 Plug 'jremmen/vim-ripgrep',
+
+" Multiselect like in SublimeText"
+Plug 'terryma/vim-multiple-cursors'
 
 "the Python formatter"
 Plug 'psf/black'
@@ -65,3 +68,6 @@ nmap <leader>lcd :lcd %:h<CR>
 
 " Swap \n for newline
 nnoremap <leader>n   ::%s/\\n/\r/g
+
+" Change vim config
+nmap <silent> <leader>vim :e ~/.vimrc<CR>
