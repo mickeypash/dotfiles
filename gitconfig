@@ -27,6 +27,8 @@
     l = "!f() { tig $@ || git log --pretty=format:'%C(10)%h %C(12)%ad %C(blue)%an %C(3)%s%C(auto)%d' --date=relative $@; }; f"
     gl=log --pretty=format:'%ai\t%h\t%an\t%s\t%d'
 
+    url =! bash -c 'git config --get remote.origin.url | sed -E "s/.+:\\(.+\\)\\.git$/https:\\\\/\\\\/github\\\\.com\\\\/\\\\1/g"'
+
     # Grep through all commits
     hgrep = "!f() { git rev-list --all | xargs git grep $@; }; f"
 [diff]

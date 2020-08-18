@@ -74,3 +74,6 @@ nmap <silent> <leader>vim :e ~/.vimrc<CR>
 
 " Format JSON
 nmap <leader>j :%!python -m json.tool
+
+" Get GitHub URL for the line under your cursor
+nnoremap <leader>o :!echo `git url`/blob/`git rev-parse --abbrev-ref HEAD`/%\#L<C-R>=line('.')<CR> \| xargs open<CR><CR>
