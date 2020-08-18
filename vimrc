@@ -67,7 +67,10 @@ nmap <leader>cd :cd %:h<CR>
 nmap <leader>lcd :lcd %:h<CR>
 
 " Swap \n for newline
-nnoremap <leader>n   ::%s/\\n/\r/g
+nnoremap <leader>n   :%s/\\n/\r/g
 
 " Change vim config
 nmap <silent> <leader>vim :e ~/.vimrc<CR>
+
+" Format JSON
+nmap <leader>j :%!python -m json.tool
