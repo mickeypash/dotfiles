@@ -31,5 +31,13 @@
 
     # Grep through all commits
     hgrep = "!f() { git rev-list --all | xargs git grep $@; }; f"
+
+    sync = "!git checkout master && git pull origin master && git fetch -p origin \
+             && for f in $(git branch --merged | grep -v master | grep -v '*'); do \
+            git branch -d $f; done"
+    please = push --force-with-lease
+    amend = commit --amend --no-edit -a
+    oops = "!git amend && git please"
+
 [diff]
     algorithm = patience
