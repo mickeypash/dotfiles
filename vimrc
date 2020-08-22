@@ -37,6 +37,9 @@ Plug 'psf/black'
 " Git blame, status etc"
 Plug 'tpope/vim-fugitive',
 
+" Align markdown tables
+Plug 'junegunn/vim-easy-align'
+
 " Man pages for VIM"
 Plug 'vim-utils/vim-man',
 Plug 'git@github.com:kien/ctrlp.vim',
@@ -72,8 +75,12 @@ nnoremap <leader>n   :%s/\\n/\r/g
 " Change vim config
 nmap <silent> <leader>vim :e ~/.vimrc<CR>
 
+<<<<<<< Updated upstream
 " Format JSON
 nmap <leader>j :%!python -m json.tool
 
 " Get GitHub URL for the line under your cursor
 nnoremap <leader>o :!echo `git url`/blob/`git rev-parse --abbrev-ref HEAD`/%\#L<C-R>=line('.')<CR> \| xargs open<CR><CR>
+
+" Align GitHub-flavored Markdown tables
+au FileType markdown vmap <Leader><Bslash> :EasyAlign*<Bar><Enter>
