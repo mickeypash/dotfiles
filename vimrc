@@ -37,6 +37,9 @@ Plug 'psf/black'
 " Git blame, status etc"
 Plug 'tpope/vim-fugitive',
 
+" Align markdown tables
+Plug 'junegunn/vim-easy-align'
+
 " Man pages for VIM"
 Plug 'vim-utils/vim-man',
 Plug 'git@github.com:kien/ctrlp.vim',
@@ -86,3 +89,7 @@ nmap <leader>p <Esc>:w<CR>:!clear;python %<CR>
 " PLUGIN: NERDTree
 nnoremap <Leader>nf :NERDTreeFind<CR>
 nnoremap <Leader>nt :NERDTreeToggle<CR>
+
+" Align GitHub-flavored Markdown tables
+au FileType markdown vmap <Leader><Bslash> :EasyAlign*<Bar><Enter>
+
