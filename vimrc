@@ -45,6 +45,8 @@ Plug 'git@github.com:kien/ctrlp.vim',
 "Plug 'git@github.com:Valloric/YouCompleteMe.git',"
 Plug 'mbbill/undotree'
 
+" NerdTree
+Plug 'preservim/nerdtree'
 call plug#end()
 
 colorscheme gruvbox
@@ -77,3 +79,10 @@ nmap <leader>j :%!python -m json.tool
 
 " Get GitHub URL for the line under your cursor
 nnoremap <leader>o :!echo `git url`/blob/`git rev-parse --abbrev-ref HEAD`/%\#L<C-R>=line('.')<CR> \| xargs open<CR><CR>
+
+" Run Python script
+nmap <leader>p <Esc>:w<CR>:!clear;python %<CR>
+
+" PLUGIN: NERDTree
+nnoremap <Leader>nf :NERDTreeFind<CR>
+nnoremap <Leader>nt :NERDTreeToggle<CR>
