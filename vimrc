@@ -53,6 +53,11 @@ Plug 'mbbill/undotree'
 
 " NerdTree
 Plug 'preservim/nerdtree'
+
+" FZF
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
+
 call plug#end()
 
 colorscheme gruvbox
@@ -69,6 +74,13 @@ let g:netrw_winsize=25
 
 let g:ctrlp_use_caching=0
 
+" fzf
+" Empty value to disable preview window altogether
+let g:fzf_preview_window = ''
+
+" Always enable preview window on the right with 60% width
+let g:fzf_preview_window = 'right:60%'
+
 " cd to the directory containing the file in the buffer. Both the local
 " and global flavors.
 nmap <leader>cd :cd %:h<CR>
@@ -84,7 +96,9 @@ nmap <silent> <leader>vim :e ~/.vimrc<CR>
 nmap <leader>j :%!python -m json.tool
 
 " Get GitHub URL for the line under your cursor
-nnoremap <leader>o :!echo `git url`/blob/`git rev-parse --abbrev-ref HEAD`/%\#L<C-R>=line('.')<CR> \| xargs open<CR><CR>
+nnoremap <leader>gh :!echo `git url`/blob/`git rev-parse --abbrev-ref HEAD`/%\#L<C-R>=line('.')<CR> \| xargs open<CR><CR>
+
+nnoremap <leader>o :Files<CR> 
 
 " Run Python script
 nmap <leader>p <Esc>:w<CR>:!clear;python %<CR>
