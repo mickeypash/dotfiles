@@ -96,3 +96,9 @@ nnoremap <Leader>nt :NERDTreeToggle<CR>
 " Align GitHub-flavored Markdown tables
 au FileType markdown vmap <Leader><Bslash> :EasyAlign*<Bar><Enter>
 
+" Emoji shortcuts
+ab :white_check_mark: ✅
+ab :bomb: 💣
+ab :boom: 💥
+ab :init: 🌱
+ab :raised_hands: 🙌
