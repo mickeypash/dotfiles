@@ -23,6 +23,9 @@ highlight ColorColumn ctermbg=0 guibg=lightgrey
 " Command to write as root if we dont' have permission
 cmap w!! %!sudo tee > /dev/null %
 
+set clipboard=unnamedplus
+set guioptions+=a
+
 call plug#begin('~/.vim/plugged')
 
 Plug 'morhetz/gruvbox',
