@@ -21,11 +21,16 @@
 
 	br = branch
 	up = rebase
-    
+
+    # Start new branch
+    n = !git checkout -b
+
 	ignore = "!gi() { IFS=\",\"; curl -L -s \"https://www.gitignore.io/api/$*\" | tee .gitignore;}; \\\ngi"
 
     l = "!f() { tig $@ || git log --pretty=format:'%C(10)%h %C(12)%ad %C(blue)%an %C(3)%s%C(auto)%d' --date=relative $@; }; f"
-    gl=log --pretty=format:'%ai\t%h\t%an\t%s\t%d'
+    gl = log --pretty=format:'%ai\t%h\t%an\t%s\t%d'
+    hist = log --pretty=format:'%h %ad | %s%d [%an]' --graph --date=short
+    last = log -1 HEAD
 
     url =! bash -c 'git config --get remote.origin.url | sed -E "s/.+:\\(.+\\)\\.git$/https:\\\\/\\\\/github\\\\.com\\\\/\\\\1/g"'
 
