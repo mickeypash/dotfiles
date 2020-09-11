@@ -81,6 +81,12 @@ let g:fzf_preview_window = ''
 " Always enable preview window on the right with 60% width
 let g:fzf_preview_window = 'right:60%'
 
+nnoremap <leader>h :wincmd h<CR>
+nnoremap <leader>j :wincmd j<CR>
+nnoremap <leader>k :wincmd k<CR>
+nnoremap <leader>l :wincmd l<CR>
+nnoremap <leader>u :UndotreeShow<CR>
+
 " cd to the directory containing the file in the buffer. Both the local
 " and global flavors.
 nmap <leader>cd :cd %:h<CR>
@@ -93,7 +99,7 @@ nnoremap <leader>n   :%s/\\n/\r/g
 nmap <silent> <leader>vim :e ~/.vimrc<CR>
 
 " Format JSON
-nmap <leader>j :%!python -m json.tool
+nmap <leader>json :%!python -m json.tool
 
 " Get GitHub URL for the line under your cursor
 nnoremap <leader>gh :!echo `git url`/blob/`git rev-parse --abbrev-ref HEAD`/%\#L<C-R>=line('.')<CR> \| xargs open<CR><CR>
@@ -101,11 +107,11 @@ nnoremap <leader>gh :!echo `git url`/blob/`git rev-parse --abbrev-ref HEAD`/%\#L
 nnoremap <leader>o :Files<CR> 
 
 " Run Python script
-nmap <leader>p <Esc>:w<CR>:!clear;python %<CR>
+nmap <leader>py <Esc>:w<CR>:!clear;python %<CR>
 
 " PLUGIN: NERDTree
-nnoremap <Leader>nf :NERDTreeFind<CR>
-nnoremap <Leader>nt :NERDTreeToggle<CR>
+nnoremap <leader>nf :NERDTreeFind<CR>
+nnoremap <leader>nt :NERDTreeToggle<CR>
 
 " Align GitHub-flavored Markdown tables
 au FileType markdown vmap <Leader><Bslash> :EasyAlign*<Bar><Enter>
@@ -116,3 +122,5 @@ ab :bomb: 💣
 ab :boom: 💥
 ab :init: 🌱
 ab :raised_hands: 🙌
+
+
