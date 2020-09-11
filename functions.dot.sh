@@ -116,3 +116,7 @@ function ,tmp {
         tee /tmp/tmp_file | less - <&0
     fi
 }
+
+function ,user-data {
+aws ec2 describe-instance-attribute --instance-id "$1" --attribute userData | jq .UserData.Value -r | base64 -d
+}
