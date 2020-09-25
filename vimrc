@@ -25,11 +25,16 @@ cmap w!! %!sudo tee > /dev/null %
 
 set clipboard=unnamedplus
 set guioptions+=a
+set relativenumber
 
 call plug#begin('~/.vim/plugged')
 
-Plug 'morhetz/gruvbox',
-Plug 'jremmen/vim-ripgrep',
+Plug 'vim-airline/vim-airline'
+
+Plug 'morhetz/gruvbox'
+Plug 'jremmen/vim-ripgrep'
+
+Plug 'wakatime/vim-wakatime'
 
 " Multiselect like in SublimeText"
 Plug 'terryma/vim-multiple-cursors'
@@ -38,14 +43,14 @@ Plug 'terryma/vim-multiple-cursors'
 Plug 'psf/black'
 
 " Git blame, status etc"
-Plug 'tpope/vim-fugitive',
+Plug 'tpope/vim-fugitive'
 
 " Align markdown tables
 Plug 'junegunn/vim-easy-align'
 
 " Man pages for VIM"
-Plug 'vim-utils/vim-man',
-Plug 'git@github.com:kien/ctrlp.vim',
+Plug 'vim-utils/vim-man'
+Plug 'git@github.com:kien/ctrlp.vim'
 
 " Autocompletion"
 "Plug 'git@github.com:Valloric/YouCompleteMe.git',"
@@ -62,6 +67,8 @@ call plug#end()
 
 colorscheme gruvbox
 set background=dark
+let g:gruvbox_contrast_dark = 'hard'
+let g:gruvbox_invert_selection='0'
 
 if executable('rg')
     let g:rg_derive_root='true'
