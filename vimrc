@@ -23,7 +23,7 @@ highlight ColorColumn ctermbg=0 guibg=lightgrey
 " Command to write as root if we dont' have permission
 cmap w!! %!sudo tee > /dev/null %
 
-set clipboard=unnamedplus
+set clipboard=unnamed
 set guioptions+=a
 set relativenumber
 
@@ -40,7 +40,7 @@ Plug 'wakatime/vim-wakatime'
 Plug 'terryma/vim-multiple-cursors'
 
 "the Python formatter"
-Plug 'psf/black'
+"Plug 'psf/black'
 
 " Git blame, status etc"
 Plug 'tpope/vim-fugitive'
@@ -58,6 +58,8 @@ Plug 'mbbill/undotree'
 
 " NerdTree
 Plug 'preservim/nerdtree'
+
+Plug 'etdev/vim-hexcolor'
 
 " FZF
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
