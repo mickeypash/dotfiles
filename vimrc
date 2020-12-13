@@ -113,7 +113,7 @@ nmap <leader>json :%!python -m json.tool
 " Get GitHub URL for the line under your cursor
 nnoremap <leader>gh :!echo `git url`/blob/`git rev-parse --abbrev-ref HEAD`/%\#L<C-R>=line('.')<CR> \| xargs open<CR><CR>
 
-nnoremap <leader>o :Files<CR> 
+nnoremap <leader>o :GFiles<CR> 
 
 " Run Python script
 nmap <leader>py <Esc>:w<CR>:!clear;python %<CR>
