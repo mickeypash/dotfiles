@@ -43,6 +43,7 @@
     please = push --force-with-lease
     amend = commit --amend --no-edit -a
     oops = "!git amend && git please"
-
 [diff]
     algorithm = patience
+[include]
+    path = gitalias.txt

@@ -27,3 +27,5 @@ Add a config to your dotfiles
 mkrc .zshrc .vimrc
 ```
 
+Add GitAlias
+curl -O https://raw.githubusercontent.com/GitAlias/gitalias/master/gitalias.txt
