@@ -65,6 +65,9 @@ Plug 'etdev/vim-hexcolor'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 
+" Autocompletion using AI
+Plug 'codota/tabnine-vim'
+
 call plug#end()
 
 colorscheme gruvbox
