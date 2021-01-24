@@ -28,7 +28,7 @@ function kube-alertmanager () {
 }
 
 function kube-grafana () {
-  kubectl port-forward --namespace grafana2 $(kubectl get pod --namespace=grafana2 -l app=grafana | tail -n 1 | awk '{print $1}') 3000 &
+  kubectl port-forward --namespace grafana $(kubectl get pod --namespace=grafana | tail -n 1 | awk '{print $1}') 3000 &
   sleep 1
   open "http://localhost:3000"
   fg
