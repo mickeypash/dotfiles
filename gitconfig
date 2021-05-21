@@ -18,12 +18,15 @@
     dc = diff --cached
     dw = diff --color-words
     dwc = diff --color-words --cached
+    desc =!git log --format=%b -1 | pbcopy # copy the message of the last commit
 
 	br = branch
 	up = rebase
 
     # Start new branch
     n = !git checkout -b
+
+    new-pr =! open https://bitbucket.org/touchsurgery/platform/pull-requests/new
 
 	ignore = "!gi() { IFS=\",\"; curl -L -s \"https://www.gitignore.io/api/$*\" | tee .gitignore;}; \\\ngi"
 
@@ -47,3 +50,5 @@
     algorithm = patience
 [include]
     path = gitalias.txt
+[mailmap]
+	file = ~/gitmailmap.txt
