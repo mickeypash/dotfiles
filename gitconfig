@@ -46,9 +46,15 @@
     please = push --force-with-lease
     amend = commit --amend --no-edit -a
     oops = "!git amend && git please"
+ 
+    standup = log --since '1 day ago' --no-merges --branches --author Mickey --date=relative --pretty=format':%Cgreen%cd%Creset \t%Cred%h%Creset %s'
+    sprint = log --since '14 day ago' --no-merges --branches --author Mickey --date=relative --pretty=format':%Cgreen%cd%Creset \t%Cred%h%Creset %s'
+    monday = log --since '3 day ago' --no-merges --branches --author Mickey --date=relative --pretty=format':%Cgreen%cd%Creset \t%Cred%h%Creset %s'
 [diff]
     algorithm = patience
 [include]
     path = gitalias.txt
 [mailmap]
-	file = ~/gitmailmap.txt
+	file = gitmailmap.txt
+[commit]
+	template = gitmessage.txt
