@@ -26,18 +26,21 @@ cmap w!! %!sudo tee > /dev/null %
 set clipboard=unnamed
 set guioptions+=a
 set relativenumber
+set splitright
 
 call plug#begin('~/.vim/plugged')
+
+"Plug 'skanehira/gh.vim'
 
 Plug 'vim-airline/vim-airline'
 
 Plug 'morhetz/gruvbox'
-Plug 'jremmen/vim-ripgrep'
+"Plug 'jremmen/vim-ripgrep'
 
 Plug 'wakatime/vim-wakatime'
 
 " Multiselect like in SublimeText"
-Plug 'terryma/vim-multiple-cursors'
+"Plug 'terryma/vim-multiple-cursors'
 
 "the Python formatter"
 "Plug 'psf/black'
@@ -45,16 +48,16 @@ Plug 'terryma/vim-multiple-cursors'
 " Git blame, status etc"
 Plug 'tpope/vim-fugitive'
 
-" Align markdown tables
-Plug 'junegunn/vim-easy-align'
-
 " Man pages for VIM"
-Plug 'vim-utils/vim-man'
+"Plug 'vim-utils/vim-man'
 Plug 'git@github.com:kien/ctrlp.vim'
 
 " Autocompletion"
-"Plug 'git@github.com:Valloric/YouCompleteMe.git',"
-Plug 'mbbill/undotree'
+Plug 'git@github.com:Valloric/YouCompleteMe.git',"
+
+" Python syntax
+Plug 'vim-syntastic/syntastic'
+"Plug 'mbbill/undotree'
 
 " NerdTree
 Plug 'preservim/nerdtree'
@@ -66,7 +69,13 @@ Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 
 " Autocompletion using AI
-Plug 'codota/tabnine-vim'
+" Plug 'codota/tabnine-vim'
+
+" Sum/max/min/avg on columns of numbers
+"Plug 'drxcc/vim-vmath'
+
+" TableMode
+Plug 'dhruvasagar/vim-table-mode'
 
 call plug#end()
 
@@ -107,6 +116,9 @@ nmap <leader>lcd :lcd %:h<CR>
 " Swap \n for newline
 nnoremap <leader>n   :%s/\\n/\r/g
 
+" Swap comma + space for comma + newline
+nnoremap <leader>nn   :%s/,\s/,\r/g
+
 " Change vim config
 nmap <silent> <leader>vim :e ~/.vimrc<CR>
 
@@ -126,9 +138,6 @@ nnoremap <leader>nf :NERDTreeFind<CR>
 nnoremap <leader>nt :NERDTreeToggle<CR>
 let NERDTreeIgnore = ['\.pyc$', '\.egg-info$', '__pycache__', '__pycache__']
 
-" Align GitHub-flavored Markdown tables
-au FileType markdown vmap <Leader><Bslash> :EasyAlign*<Bar><Enter>
-
 " Emoji shortcuts
 ab :white_check_mark: ✅
 ab :bomb: 💣
@@ -136,4 +145,12 @@ ab :boom: 💥
 ab :init: 🌱
 ab :raised_hands: 🙌
 
+let g:gh_token = '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'
 
+" Mappings for vmath
+vmap <expr>  ++  VMATH_YankAndAnalyse()
+nmap         ++  vip++
+
+nnoremap <leader>gl :YcmCompleter GoToDeclaration<CR>
+nnoremap <leader>gf :YcmCompleter GoToDefinition<CR>
+nnoremap <leader>gg :YcmCompleter GoToDefinitionElseDeclaration<CR>
