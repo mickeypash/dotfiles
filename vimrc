@@ -28,6 +28,12 @@ set guioptions+=a
 set relativenumber
 set splitright
 
+let data_dir = has('nvim') ? stdpath('data') . '/site' : '~/.vim'
+if empty(glob(data_dir . '/autoload/plug.vim'))
+  silent execute '!curl -fLo '.data_dir.'/autoload/plug.vim --create-dirs  https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+endif
+
 call plug#begin('~/.vim/plugged')
 
 "Plug 'skanehira/gh.vim'
@@ -59,10 +65,10 @@ Plug 'git@github.com:Valloric/YouCompleteMe.git',"
 Plug 'vim-syntastic/syntastic'
 "Plug 'mbbill/undotree'
 
+Plug 'etdev/vim-hexcolor'
+
 " NerdTree
 Plug 'preservim/nerdtree'
-
-Plug 'etdev/vim-hexcolor'
 
 " FZF
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
