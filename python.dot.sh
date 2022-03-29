@@ -1,20 +1,34 @@
+#export VIRTUALENVWRAPPER_PYTHON=/usr/local/bin/python
+#export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python
+export VIRTUALENVWRAPPER_VIRTUALENV=/usr/local/bin/virtualenv
 
 # virtualenvwrapper
 # lazy loading saves on shell startup time
 workon() {
   [ -z "$PROJECT_HOME" ] && {
     unset -f workon;
-    # export PROJECT_HOME=/server/python/;
+    #export PROJECT_HOME=/server/python/;
     source /usr/local/bin/virtualenvwrapper.sh
-
     }
   workon "$@"
 }
 
 # Enable Pyenv
-export PATH="/Users/mickeypash/.pyenv/bin:$PATH"
+#export PATH="/Users/mickeypash/.pyenv/bin:$PATH"
+export PYTHONSTARTUP=~/.pythonstartup.py
+#eval "$(pyenv init -)"
+#eval "$(pyenv virtualenv-init -)"
+
+
+export PATH="$HOME/.pyenv/bin:$PATH"
+export PATH="/usr/local/bin:$PATH"
+
 eval "$(pyenv init -)"
-eval "$(pyenv virtualenv-init -)"
+
+export LDFLAGS="-L/usr/local/opt/zlib/lib -L/usr/local/opt/bzip2/lib"
+export CPPFLAGS="-I/usr/local/opt/zlib/include -I/usr/local/opt/bzip2/include"
+
+
 
 function ,pypath {
     # usage: ,pypath [--prepend] [<directories>]
