@@ -46,6 +46,13 @@ function kube-check () {
 }
 
 function kube-pods-maybe-broken () {
-    # Print kube pods with a high number of restarts, or that are in a crash loop.
-    kubectl get pod | awk -F ' ' '{if (($4 >= 10) || ($3 ~ ".*Crash.*")) print $0}'
+   # Print kube pods with a high number of restarts, or that are in a crash loop.
+   kubectl get pod | awk -F ' ' '{if (($4 >= 10) || ($3 ~ ".*Crash.*")) print $0}'
+}
+
+function kube-kibana () {
+  kubectl port-forward svc/kibana-kibana 5601 -n elastic &
+  sleep 1
+  open "http://localhost:5601"
+  fg
 }
