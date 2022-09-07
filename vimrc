@@ -67,6 +67,9 @@ Plug 'vim-syntastic/syntastic'
 
 Plug 'etdev/vim-hexcolor'
 
+" GH Copilot
+Plug 'github/copilot.vim'
+
 " NerdTree
 Plug 'preservim/nerdtree'
 
@@ -132,12 +135,13 @@ nmap <silent> <leader>vim :e ~/.vimrc<CR>
 nmap <leader>json :%!python -m json.tool
 
 " Get GitHub URL for the line under your cursor
-nnoremap <leader>gh :!echo `git url`/blob/`git rev-parse --abbrev-ref HEAD`/%\#L<C-R>=line('.')<CR> \| xargs open<CR><CR>
+nnoremap <leader>bb :!echo `git url`/src/`git latest`/%\#lines-<C-R>=line('.')<CR> \| xargs open<CR><CR>
 
 nnoremap <leader>o :GFiles<CR> 
 
 " Run Python script
 nmap <leader>py <Esc>:w<CR>:!clear;python %<CR>
+nmap <leader>ts <Esc>:w<CR>:!clear;pytest %<CR>
 
 " PLUGIN: NERDTree
 nnoremap <leader>nf :NERDTreeFind<CR>
