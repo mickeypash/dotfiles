@@ -74,7 +74,8 @@ plugins=(
 )
 
 source $ZSH/oh-my-zsh.sh
-
+unsetopt correct_all  
+setopt correct
 # User configuration
 
 # export MANPATH="/usr/local/man:$MANPATH"
@@ -138,11 +139,12 @@ source ~/.aliases
 export LESS=-iMFXSx4R
 
 export PATH="/usr/local/opt/gettext/bin:$PATH"
-export PATH="$HOME/.poetry/bin:$PATH"
 export PATH="/usr/local/opt/mongodb-community@3.6/bin:$PATH"
 export PATH="/usr/local/opt/postgresql@10/bin:$PATH"
-export PATH="/Users/mickey/Library/Python/3.7/bin:$PATH"
-export PATH="/Users/mickey/Code:$PATH"
+# Other laptop
+#export PATH="$HOME/Library/Python/3.7/bin:$PATH"
+#export PATH="$HOME/Code:$PATH"
+export PATH="$HOME/Library/Python/3.9/bin:$PATH"
 
 # TODO Lazy load NVM
 # Node Version Manager
@@ -153,19 +155,48 @@ export PATH="/Users/mickey/Code:$PATH"
 # Use Brew Ruby
 export PATH=/usr/local/opt/ruby/bin:$PATH
 export PATH=/usr/local/lib/ruby/gems/2.7.0:$PATH
-export PATH=/Library/Python/2.7/bin:$PATH
+# export PATH=/Library/Python/2.7/bin:$PATH
 
 # Split by language node.dot.sh; go.dot.sh; python.dot.sh
 # export PROMPT="${ret_status} %{$fg[cyan]%}%c%{$reset_color%} $(prompt_aws_vault_segment) $(git_prompt_info)"
-
 # export PROMPT='$(prompt_aws_vault_segment) ${ret_status} %{$fg[cyan]%}%c%{$reset_color%} $(git_prompt_info)'
 
-autoload -Uz compinit
-if [ $(date +'%j') != $(stat -f '%Sm' -t '%j' ~/.zcompdump) ]; then
-  compinit
-else
-  compinit -C
-fi
+export PROMPT_SUBST=1
+#export KUBE_CONTEXT=$(kubectl config current-context 2>&1 | awk -F '-' '{gsub("Staging","",$2);$2=tolower($2);print $2}')
 
-export PATH="/usr/local/opt/python/libexec/bin:$PATH"
+function kube_context {
+    kubectl config current-context 2>&1 | awk -F '-' '{gsub(/Staging/,"",$2);$2=tolower($2);print $2}'
+}
+
+export PROMPT='($(kube_context)) '$PROMPT
+#export PROMPT='($(kubectl config current-context | awk -F "-" "{print $2}")) '$PROMPT
+
+#autoload -Uz compinit
+#if [ $(date +'%j') != $(stat -f '%Sm' -t '%j' ~/.zcompdump) ]; then
+#  compinit
+#else
+#  compinit -C
+#fi
+
+# export PATH="/usr/local/opt/python/libexec/bin:$PATH"
 # zprof # bottom of .zshrc
+export GO111MODULE=on
+export GOPATH=$HOME/go
+export PATH=$PATH:$GOPATH/bin
+
+export PATH="/usr/local/sbin:$PATH"
+export PATH="/usr/local/bin/:$PATH"
+
+#export VIRTUALENVWRAPPER_PYTHON=$(which python3)
+#export VIRTUALENVWRAPPER_VIRTUALENV=/usr/local/bin/virtualenv
+#source /usr/local/bin/virtualenvwrapper.sh
+
+# AWS auto-complete
+autoload bashcompinit && bashcompinit
+autoload -Uz compinit && compinit
+complete -C '/usr/local/bin/aws_completer' aws
+
+# Kube auto-complete
+source <(kubectl completion zsh)
+
+export PATH="$HOME/.poetry/bin:$PATH"
