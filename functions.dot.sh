@@ -1,16 +1,46 @@
-function __fzf_history__() {
-    local line
-    shopt -u nocaseglob nocasematch
-    line=$(
-        HISTTIMEFORMAT= history | sort -r -k 2 | uniq -f 1 | sort -n |
-            FZF_DEFAULT_OPTS="--height ${FZF_TMUX_HEIGHT:-40%} $FZF_DEFAULT_OPTS --tac --sync -n2..,.. --tiebreak=index --bind=ctrl-r:toggle-sort $FZF_CTRL_R_OPTS +m" $(__fzfcmd) |
-            command grep '^ *[0-9]'
-        ) &&
-        if [[ $- =~ H ]]; then
-            sed 's/^ *\([0-9]*\)\** .*/!\1/' <<< "$line"
-        else
-            sed 's/^ *\([0-9]*\)\** *//' <<< "$line"
-        fi
+# open a ticket by number; e.g., "jira ED-1010", or if the current directory is a repo with an active branch containing a ticket number, open it directly
+function jira() {
+    if [[ $# -eq 1 ]]; then
+        open "https://kinosis.atlassian.net/browse/$1"
+        return
+    fi
+    BR=`git branch --show-current` 2>/dev/null
+    REGEX='.*([A-Z]{2,9}-[0-9]{1,4}).*'
+    if [[ $BR =~ $REGEX ]]; then
+        URL="https://kinosis.atlassian.net/browse/${match[1]}"
+        echo "Opening $URL"
+        open $URL
+    else
+        echo "Couldn't find the ticket number or not in a Git repo, aborting"
+        return 1
+    fi
+}
+
+# shortcut to bitbucket repos; e.g., "bb platform somebranch"
+function bb() {
+    if [[ $# -eq 0 ]]; then
+        open "https://bitbucket.org/dashboard/overview"
+        return
+    fi
+    REPO=$1
+    BRANCH=${2:-"master"}
+    open "https://bitbucket.org/realtimeml/$REPO/src/$BRANCH/"
+}
+
+# shortcut to ORDevices, by ID
+function ordevice() {
+    open "https://live.touchsurgery.com/admin/core/ordevice/?q=$1"
+}
+
+# when in a git repo directory, open its remote URL in the browser
+function repo() {
+    if [ ! -d './.git/' ]; then
+        echo "Not in a Git repository"
+        return 1
+    fi
+    URL=`/bin/cat .git/config | grep -A1 'remote "origin"' | tail -1 | sed -E 's/^.*@(.*).git$/\1/' | sed 's/:/\//g' | sed '1s;^;https://;'`
+    echo "Opening $URL"
+    open $URL
 }
 
 catr() {
@@ -120,3 +150,19 @@ function ,tmp {
 function ,user-data {
 aws ec2 describe-instance-attribute --instance-id "$1" --attribute userData | jq .UserData.Value -r | base64 -d
 }
+
+function __fzf_history__() {
+    local line
+    shopt -u nocaseglob nocasematch
+    line=$(
+        HISTTIMEFORMAT= history | sort -r -k 2 | uniq -f 1 | sort -n |
+            FZF_DEFAULT_OPTS="--height ${FZF_TMUX_HEIGHT:-40%} $FZF_DEFAULT_OPTS --tac --sync -n2..,.. --tiebreak=index --bind=ctrl-r:toggle-sort $FZF_CTRL_R_OPTS +m" $(__fzfcmd) |
+            command grep '^ *[0-9]'
+        ) &&
+        if [[ $- =~ H ]]; then
+            sed 's/^ *\([0-9]*\)\** .*/!\1/' <<< "$line"
+        else
+            sed 's/^ *\([0-9]*\)\** *//' <<< "$line"
+        fi
+}
+
