@@ -25,7 +25,7 @@ cmap w!! %!sudo tee > /dev/null %
 
 set clipboard=unnamed
 set guioptions+=a
-set relativenumber
+" set relativenumber
 set splitright
 
 let data_dir = has('nvim') ? stdpath('data') . '/site' : '~/.vim'
@@ -134,6 +134,15 @@ nmap <silent> <leader>vim :e ~/.vimrc<CR>
 " Format JSON
 nmap <leader>json :%!python -m json.tool
 
+" Format things
+" Indent html
+nmap <leader>html :%s/></>\r</g
+" Strip tags
+nmap <leader>strip :%s/<\_.\{-1,\}>//g
+
+" Quote
+nmap <leader>quote :%s/^\(.*\)$/"\1"/
+
 " Get GitHub URL for the line under your cursor
 nnoremap <leader>bb :!echo `git url`/src/`git latest`/%\#lines-<C-R>=line('.')<CR> \| xargs open<CR><CR>
 
@@ -154,8 +163,6 @@ ab :bomb: 💣
 ab :boom: 💥
 ab :init: 🌱
 ab :raised_hands: 🙌
-
-let g:gh_token = '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'
 
 " Mappings for vmath
 vmap <expr>  ++  VMATH_YankAndAnalyse()
