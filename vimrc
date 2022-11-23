@@ -40,23 +40,23 @@ call plug#begin('~/.vim/plugged')
 
 Plug 'vim-airline/vim-airline'
 
+" Best theme ever
 Plug 'morhetz/gruvbox'
 "Plug 'jremmen/vim-ripgrep'
 
 Plug 'wakatime/vim-wakatime'
 
-" Multiselect like in SublimeText"
+" Multiselect like in SublimeText
 "Plug 'terryma/vim-multiple-cursors'
-
-"the Python formatter"
-"Plug 'psf/black'
 
 " Git blame, status etc"
 Plug 'tpope/vim-fugitive'
 
 " Man pages for VIM"
 "Plug 'vim-utils/vim-man'
-Plug 'git@github.com:kien/ctrlp.vim'
+
+"Full path fuzzy file, buffer, mru, tag, ... finder for Vim
+"Plug 'ctrlpvim/ctrlp.vim'
 
 " Autocompletion"
 Plug 'git@github.com:Valloric/YouCompleteMe.git',"
@@ -68,7 +68,7 @@ Plug 'vim-syntastic/syntastic'
 Plug 'etdev/vim-hexcolor'
 
 " GH Copilot
-Plug 'github/copilot.vim'
+" Plug 'github/copilot.vim'
 
 " NerdTree
 Plug 'preservim/nerdtree'
@@ -123,28 +123,28 @@ nmap <leader>cd :cd %:h<CR>
 nmap <leader>lcd :lcd %:h<CR>
 
 " Swap \n for newline
-nnoremap <leader>n   :%s/\\n/\r/g
+nnoremap <leader>n   :%s/\\n/\r/g<CR>
 
 " Swap comma + space for comma + newline
-nnoremap <leader>nn   :%s/,\s/,\r/g
+nnoremap <leader>nn   :%s/,\s/,\r/g<CR>
 
 " Change vim config
 nmap <silent> <leader>vim :e ~/.vimrc<CR>
 
 " Format JSON
-nmap <leader>json :%!python -m json.tool
+nmap <leader>json :%!python -m json.tool<CR>
 
 " Format things
 " Indent html
-nmap <leader>html :%s/></>\r</g
+nmap <leader>html :%s/></>\r</g<CR>
 " Strip tags
-nmap <leader>strip :%s/<\_.\{-1,\}>//g
+nmap <leader>strip :%s/<\_.\{-1,\}>//g<CR>
 
 " Quote
-nmap <leader>quote :%s/^\(.*\)$/"\1"/
+nmap <leader>quote :%s/^\(.*\)$/"\1"/<CR>
 
 " Get GitHub URL for the line under your cursor
-nnoremap <leader>bb :!echo `git url`/src/`git latest`/%\#lines-<C-R>=line('.')<CR> \| xargs open<CR><CR>
+" nnoremap <leader>bb :!echo `git url`/src/`git latest`/%\#lines-<C-R>=line('.')<CR> \| xargs open<CR><CR>
 
 nnoremap <leader>o :GFiles<CR> 
 
