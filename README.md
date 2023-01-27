@@ -3,6 +3,8 @@ My new dotfiles
 
 Install Homebrew
 
+- https://docs.brew.sh/Installation
+
 Install rc file management:
 ```
 brew tap thoughtbot/formulae
@@ -28,4 +30,6 @@ mkrc .zshrc .vimrc
 ```
 
 Add GitAlias
+```
 curl -O https://raw.githubusercontent.com/GitAlias/gitalias/master/gitalias.txt
+```
