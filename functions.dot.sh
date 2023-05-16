@@ -166,3 +166,4 @@ function __fzf_history__() {
         fi
 }
 
+function urldecode() { python3 -c "import sys; from urllib.parse import unquote; print(unquote(sys.stdin.read()));" }
