@@ -16,7 +16,7 @@ set incsearch
 " set backspace=indent,eol,start
 set backspace=2           " Makes backspace behave like you'd expecti
 " set showmatch             " Highlight matching braces
-set colorcolumn=80        " Highlight 80 character limit
+set colorcolumn=120        " Highlight 80 character limit
 set showmode              " Show the current mode on the open buffer
 highlight ColorColumn ctermbg=0 guibg=lightgrey
 
@@ -39,12 +39,13 @@ call plug#begin('~/.vim/plugged')
 "Plug 'skanehira/gh.vim'
 
 Plug 'vim-airline/vim-airline'
+Plug 'hashivim/vim-terraform'
 
 " Best theme ever
 Plug 'morhetz/gruvbox'
 "Plug 'jremmen/vim-ripgrep'
 
-Plug 'wakatime/vim-wakatime'
+"Plug 'wakatime/vim-wakatime'
 
 " Multiselect like in SublimeText
 "Plug 'terryma/vim-multiple-cursors'
@@ -144,9 +145,11 @@ nmap <leader>strip :%s/<\_.\{-1,\}>//g<CR>
 nmap <leader>quote :%s/^\(.*\)$/"\1"/<CR>
 
 " Get GitHub URL for the line under your cursor
-" nnoremap <leader>bb :!echo `git url`/src/`git latest`/%\#lines-<C-R>=line('.')<CR> \| xargs open<CR><CR>
+nnoremap <leader>bb :!echo `git url`/src/`git latest`/%\#lines-<C-R>=line('.')<CR> \| xargs open<CR><CR>
 
 nnoremap <leader>o :GFiles<CR> 
+
+nnoremap <leader>b :Buffers<CR> 
 
 " Run Python script
 nmap <leader>py <Esc>:w<CR>:!clear;python %<CR>
