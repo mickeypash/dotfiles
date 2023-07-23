@@ -68,3 +68,5 @@
 	defaultBranch = main
 [push]
 	autoSetupRemote = true
+#[blame]
+#	ignoreRevsFile = .git-blame-ignore-revs
