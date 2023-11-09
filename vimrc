@@ -60,7 +60,7 @@ Plug 'tpope/vim-fugitive'
 "Plug 'ctrlpvim/ctrlp.vim'
 
 " Autocompletion"
-Plug 'git@github.com:Valloric/YouCompleteMe.git',"
+" Plug 'git@github.com:Valloric/YouCompleteMe.git',"
 
 " Python syntax
 Plug 'vim-syntastic/syntastic'
@@ -86,6 +86,9 @@ Plug 'junegunn/fzf.vim'
 
 " TableMode
 Plug 'dhruvasagar/vim-table-mode'
+
+" Syntax Highligting for Elixir
+Plug 'elixir-editors/vim-elixir'
 
 call plug#end()
 
