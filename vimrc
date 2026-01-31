@@ -18,6 +18,7 @@ set backspace=2           " Makes backspace behave like you'd expecti
 " set showmatch             " Highlight matching braces
 set colorcolumn=120        " Highlight 80 character limit
 set showmode              " Show the current mode on the open buffer
+
 highlight ColorColumn ctermbg=0 guibg=lightgrey
 
 " Command to write as root if we dont' have permission
@@ -69,7 +70,7 @@ Plug 'vim-syntastic/syntastic'
 Plug 'etdev/vim-hexcolor'
 
 " GH Copilot
-" Plug 'github/copilot.vim'
+Plug 'github/copilot.vim'
 
 " NerdTree
 Plug 'preservim/nerdtree'
@@ -148,7 +149,7 @@ nmap <leader>strip :%s/<\_.\{-1,\}>//g<CR>
 nmap <leader>quote :%s/^\(.*\)$/"\1"/<CR>
 
 " Get GitHub URL for the line under your cursor
-nnoremap <leader>bb :!echo `git url`/src/`git latest`/%\#lines-<C-R>=line('.')<CR> \| xargs open<CR><CR>
+nnoremap <leader>bb :!echo `git url`/blob/`git latest`/%\#L-<C-R>=line('.')<CR> \| xargs open<CR><CR>
 
 nnoremap <leader>o :GFiles<CR> 
 
