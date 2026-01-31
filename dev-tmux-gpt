@@ -1,0 +1,37 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+SESSION="dev"
+
+# If session already exists, just attach
+if tmux has-session -t "$SESSION" 2>/dev/null; then
+  exec tmux -2 attach-session -t "$SESSION"
+fi
+
+# Create session detached with a known first window name
+tmux new-session -d -s "$SESSION" -n "shell"
+
+# Helper: create window and cd
+newwin() {
+  local name="$1"
+  local dir="$2"
+  tmux new-window -t "$SESSION" -n "$name"
+  tmux send-keys -t "$SESSION:$name" "cd $dir" C-m
+}
+
+newwin "downloads ⤵️" "$HOME/Downloads"
+newwin "notes 📝" "$HOME/Code/notes"
+newwin "infra" "$HOME/Code/infrastructure"
+newwin "deploy" "$HOME/Code/darwin-deploy"
+newwin "aws-org" "$HOME/Code/internal-aws-org"
+newwin "backend" "$HOME/Code/darwin-backend"
+
+# Go back to first window and split it
+tmux select-window -t "$SESSION:shell"
+tmux split-window -t "$SESSION:shell" -v
+
+# Optionally select a default window to land on
+tmux select-window -t "$SESSION:backend"
+
+# Attach once, at the end
+exec tmux -2 attach-session -t "$SESSION"
