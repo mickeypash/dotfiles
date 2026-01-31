@@ -1,0 +1,24 @@
+#!/usr/bin/env bash
+
+tmux new-session
+tmux new-window -n 'downloads ⤵️'
+tmux send-keys 'cd ~/Downloads' C-m;
+
+tmux new-window -n 'notes 📝'
+tmux send-keys 'cd ~/Code/notes' C-m;
+
+tmux new-window -n 'infra'
+tmux send-keys 'cd ~/Code/infrastructure' C-m;
+
+tmux new-window -n 'deploy'
+tmux send-keys 'cd ~/Code/darwin-deploy' C-m;
+
+tmux new-window -n 'aws-org'
+tmux send-keys 'cd ~/Code/internal-aws-org' C-m;
+
+tmux new-window -n 'backend'
+tmux send-keys 'cd ~/Code/darwin-backend' C-m;
+
+
+tmux split-window -v
+tmux -2 attach-session -d
