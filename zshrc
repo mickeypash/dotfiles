@@ -68,7 +68,7 @@ plugins=(
   sudo
   python
   # kubectl
-  zsh-aws-vault
+  # zsh-aws-vault
   fasd
   asdf
 )
@@ -102,7 +102,6 @@ setopt correct
 # For a full list of active aliases, run `alias`.
 #
 
-
 eval "$(fasd --init auto)"
 
 ctags=“/usr/local/bin/ctags”
@@ -113,7 +112,7 @@ setopt HIST_IGNORE_ALL_DUPS
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
-source ~/.python.dot.sh
+#source ~/.python.dot.sh
 source ~/.functions.dot.sh
 source ~/.kube.dot.sh
 source ~/.aliases
@@ -168,8 +167,8 @@ function kube_context {
     kubectl config current-context 2>&1 | awk -F '-' '{gsub(/Staging/,"",$2);$2=tolower($2);print $2}'
 }
 
-export PROMPT='($(kube_context)) '$PROMPT
-#export PROMPT='($(kubectl config current-context | awk -F "-" "{print $2}")) '$PROMPT
+# export PROMPT='($(kube_context)) '$PROMPT
+# export PROMPT='($(kubectl config current-context | awk -F "-" "{print $2}")) '$PROMPT
 
 #autoload -Uz compinit
 #if [ $(date +'%j') != $(stat -f '%Sm' -t '%j' ~/.zcompdump) ]; then
@@ -180,23 +179,41 @@ export PROMPT='($(kube_context)) '$PROMPT
 
 # export PATH="/usr/local/opt/python/libexec/bin:$PATH"
 # zprof # bottom of .zshrc
+
+# ─── ASDF (must come before anything that relies on its shims) ───
+export ASDF_DIR="$HOME/.asdf"
+# load core
+[ -f "$ASDF_DIR/asdf.sh" ] && . "$ASDF_DIR/asdf.sh"
+# load completions
+[ -f "$ASDF_DIR/completions/asdf.bash" ] && . "$ASDF_DIR/completions/asdf.bash"
+
+# ─── Core PATHs ───
+# Homebrew, user bins, Poetry, Go
+export PATH="/usr/local/sbin:/usr/local/bin:$HOME/.local/bin:$HOME/.poetry/bin:$GOPATH/bin:$PATH"
+
+# ─── Go stuff ───
 export GO111MODULE=on
-export GOPATH=$HOME/go
-export PATH=$PATH:$GOPATH/bin
+export GOPATH="$HOME/go"
 
-export PATH="/usr/local/sbin:$PATH"
-export PATH="/usr/local/bin/:$PATH"
-
-#export VIRTUALENVWRAPPER_PYTHON=$(which python3)
-#export VIRTUALENVWRAPPER_VIRTUALENV=/usr/local/bin/virtualenv
-#source /usr/local/bin/virtualenvwrapper.sh
-
-# AWS auto-complete
-autoload bashcompinit && bashcompinit
+# ─── AWS auto-complete ───
 autoload -Uz compinit && compinit
+autoload bashcompinit && bashcompinit
 complete -C '/usr/local/bin/aws_completer' aws
 
-# Kube auto-complete
+# ─── kubectl completion ───
 source <(kubectl completion zsh)
 
-export PATH="$HOME/.poetry/bin:$PATH"
+# ─── direnv ───
+eval "$(direnv hook zsh)"
+
+# ─── other custom scripts ───
+source "$HOME/.config/op/plugins.sh"
+source "$HOME/.gdg.completions.sh"
+. "$HOME/.local/bin/env"
+
+export CLAUDE_CODE_USE_VERTEX=1
+export CLOUD_ML_REGION=global
+export ANTHROPIC_VERTEX_PROJECT_ID=claude-code-483815
+
+# opencode
+export PATH=/Users/mickeypashov/.opencode/bin:$PATH
