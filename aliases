@@ -23,15 +23,17 @@ alias clogs='docker-compose logs'
 alias v="vim"
 alias k="kubectl"
 alias kt="kubetail"
+alias tf="terraform"
 
-alias zshconfig="subl ~/.zshrc"
-alias ohmyzsh="subl ~/.oh-my-zsh"
-alias aa="subl ~/.aliases"
+alias zshconfig="vim ~/.zshrc"
+alias ohmyzsh="vim ~/.oh-my-zsh"
+alias aa="vim ~/.aliases"
 
-alias notes="subl ~/Code/notes/docs"
+alias notes="vim ~/Code/notes/docs"
 
-# This is a hack, I would like to setup a proper system
+alias tf-summary="terraform show tfplan | rg '  #'"
+alias tf-copy="terraform show tfplan -no-color | pbcopy"
 
-alias todo="subl ~/Code/notes/docs/weeks && subl ~/Code/notes/docs/weeks/$(date -u +"%Y-%m-%d").md"
 
 [ -f ~/.docker_aliases ] && source ~/.docker_aliases
+
